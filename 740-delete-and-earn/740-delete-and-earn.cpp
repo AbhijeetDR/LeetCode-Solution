@@ -4,7 +4,7 @@ public:
         int n = nums.size();
         
         vector<int> freq(1e4+1, 0);
-        vector<int> dp(1e4+1, 0);
+        // vector<int> dp(1e4+1, 0);
         for(int i =0; i < n; i++){
             freq[nums[i]]++;
         }
