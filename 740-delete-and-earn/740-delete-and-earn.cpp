@@ -26,6 +26,6 @@ public:
             maxi = max(maxi, dp[i]);
         }
         
-        return maxi;
+        return dp[1e4];
     }
 };
