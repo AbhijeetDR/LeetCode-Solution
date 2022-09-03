@@ -13,14 +13,14 @@ private:
     
 public:
     vector<int> numsSameConsecDiff(int n, int k) {
-        vector<int> ans;
         set<int> s;
         for(int i = 1; i <= 9; i++){
             f(i, k, i, n-1, s);
         }
-        for(auto i: s){
-            ans.push_back(i);
-        }
+        // for(auto i: s){
+        //     ans.push_back(i);
+        // }
+        vector<int> ans (s.begin(), s.end());
         return ans;
     }
 };
