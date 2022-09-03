@@ -1,6 +1,6 @@
 class Solution {
 private:
-    void f(int last, int diff, int cur, int tofill, set<int>& s){
+    void f(int last, int diff, int cur, int tofill, unordered_set<int>& s){
         if(tofill == 0){
             s.insert(cur);
             return;
@@ -13,7 +13,7 @@ private:
     
 public:
     vector<int> numsSameConsecDiff(int n, int k) {
-        set<int> s;
+        unordered_set<int> s;
         for(int i = 1; i <= 9; i++){
             f(i, k, i, n-1, s);
         }
