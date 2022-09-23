@@ -17,11 +17,12 @@ public:
     }
     
     int concatenatedBinary(int n) {
-        vector<long long int> dp(n+1);
-        dp[1] = 1;
+        // vector<long long int> dp(n+1);
+        long long int prev = 1, cur = 0;
         for(int i= 2; i <= n; i++){
-            dp[i] = ((dp[i-1]*binpow(2, log2(i) + 1))%mod + i)%mod;
+            cur = ((prev*binpow(2, log2(i) + 1))%mod + i)%mod;
+            prev = cur;
         }
-        return dp[n];
+        return prev;
     }
 };
