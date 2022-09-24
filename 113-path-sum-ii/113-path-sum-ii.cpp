@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode* root, int cur, int tar, vector<vector<int>>&ans, vector<int>tmp){
+    void trav(TreeNode* root, int cur, int tar, vector<vector<int>>&ans, vector<int>tmp){
         if(root->left == nullptr && root->right == nullptr){
             if(tar == cur + root->val){
                 tmp.push_back(root->val);
@@ -21,8 +21,8 @@ public:
         }
         
         tmp.push_back(root->val);
-        if(root->left!=nullptr)dfs(root->left, cur+root->val,tar, ans, tmp);
-        if(root->right!=nullptr)dfs(root->right,cur+root->val,tar, ans, tmp);
+        if(root->left!=nullptr)trav(root->left, cur+root->val,tar, ans, tmp);
+        if(root->right!=nullptr)trav(root->right,cur+root->val,tar, ans, tmp);
     }
     
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
@@ -31,7 +31,7 @@ public:
         }
         vector<vector<int>> ans;
         vector<int> tmp;
-        dfs(root, 0,targetSum, ans, tmp);
+        trav(root, 0,targetSum, ans, tmp);
         return ans;
         
     }
