@@ -95,26 +95,39 @@ class Solution {
   public:
     // Return the Kth smallest element in the given BST
     
-    void trav(Node* root, vector<int>&nodeval){
+    void inorder(Node* root,int& k, int& mx){
+        if(k == 0){
+            return ;
+        }
         if(root == nullptr){
             return;
         }
-        nodeval.push_back(root->data);
-        trav(root->left, nodeval);
-        trav(root->right, nodeval);
+        
+        inorder(root->left, k, mx);
+        // cout << root->data << " " << k << "\n";
+        if(root->data > mx){
+            if(k == 0){
+                return;
+            }
+            mx = root->data;
+            k--;
+
+        }
+        inorder(root->right,k, mx);
+        
     }
-    
+    //   2
+    // 1   3
+    //N N N 4
+    //      n n
     int KthSmallestElement(Node *root, int k) {
         // add code here.
-        int mx = INT_MIN;
-        vector<int> nodeval;
-        trav(root, nodeval);
-        sort(nodeval.begin(), nodeval.end());
-        if(nodeval.size() >= k){
-            return nodeval[k-1];
+        int mx = -1;
+        inorder(root, k, mx);
+        if(k > 0){
+            return -1;
         }
-        return -1;
-        
+        return mx;
     }
 };
 
