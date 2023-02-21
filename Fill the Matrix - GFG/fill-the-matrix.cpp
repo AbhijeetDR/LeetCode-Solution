@@ -13,39 +13,39 @@ public:
         // code here
         x--;
         y--;
-        queue<pair<pair<int, int>, int>> q;
+        queue<pair< int, int>> q;
         vector<vector<int>> vis(n, vector<int> (m, 0));
-        q.push({{x, y}, 0});
+        q.push({x, y});
         vis[x][y] = 1;
-        int maxdis = 0;
+        int maxdis = 1;
         while(!q.empty()){
-            int i = q.front().first.first;
-            int j = q.front().first.second;
-            int dis =q.front().second;
+            int i = q.front().first;
+            int j = q.front().second;
+            int dis = vis[i][j];
             q.pop();
             if(i+1 < n && vis[i+1][j] == 0){
-                q.push({{i+1, j}, dis+1});
-                vis[i+1][j] = 1;
+                q.push({i+1, j});
+                vis[i+1][j] = 1 + dis;
                 maxdis = max(dis+1, maxdis);
             }
             if(i-1>=0 && vis[i-1][j] == 0){
-                q.push({{i-1, j}, dis+1});
-                vis[i-1][j] =1;
+                q.push({i-1, j});
+                vis[i-1][j] =1 + dis;
                 maxdis = max(dis+1, maxdis);
             }
             if(j+1 < m && vis[i][j+1]==0){
-                q.push({{i, j+1}, dis+1});
-                vis[i][j+1] = 1;
+                q.push({i, j+1});
+                vis[i][j+1] = 1+dis;
                 maxdis = max(dis+1, maxdis);
             }
             if(j-1 >=0 && vis[i][j-1] == 0){
-                q.push({{i,j-1}, dis+1});
+                q.push({i,j-1});
                 maxdis = max(dis+1, maxdis);
-                vis[i][j-1] = 1;
+                vis[i][j-1] = 1+dis;
             }
         }
         
-        return maxdis;
+        return maxdis - 1;
         
     }
 };
